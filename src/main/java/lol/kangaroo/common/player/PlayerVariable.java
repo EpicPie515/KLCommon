@@ -25,6 +25,8 @@ public enum PlayerVariable {
 	ADMIN_JOINALERT(Boolean.class),
 	LANGUAGE(String.class, "", "", "valueOf", Object.class),
 	NICKNAME(String.class, "", "", "valueOf", Object.class),
+	VOTE_STREAK(Integer.class),
+	VOTE_LAST(Timestamp.class),
 	
 	/** Make sure to update defaults in @PlayerManager#createNewPlayer */
 	

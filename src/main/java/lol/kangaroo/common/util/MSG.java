@@ -43,6 +43,9 @@ public class MSG {
 	public static final MSG EXP_ADDED = new MSG("exp_added");
 	/** New Level, Level Number, Level Symbol **/
 	public static final MSG EXP_LEVELUP = new MSG("exp_levelup");
+	
+	/** Amount, Multiplier Message **/
+	public static final MSG MONEY_ADDED = new MSG("money_added");
 
 	/** Rank Name, Duration */
 	public static final MSG PLAYER_GRANTEDRANK = new MSG("player_grantedrank");
