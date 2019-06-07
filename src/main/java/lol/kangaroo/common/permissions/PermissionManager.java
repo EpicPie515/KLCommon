@@ -22,6 +22,9 @@ public class PermissionManager {
 		this.db = db;
 	}
 	
+	/**
+	 * If any of the player's assigned permssions equal the given permission. Does not support wildcards, for that use @ProxiedPlayer#hasPermission(String) 
+	 */
 	public boolean hasPermission(BasePlayer p, String perm) {
 		Map<String, Boolean> perms = getAllPermissions(p);
 		return perms.containsKey(perm) && perms.get(perm);
