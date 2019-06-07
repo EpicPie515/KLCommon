@@ -52,9 +52,10 @@ public interface IRankManager {
 	 * This will return PLAYER Rank if the UUID has never joined.
 	 * 
 	 * @param uuid
+	 * @param useModifiedRank specifies whether modifications to the player's rank setting should be included. This includes their nickname-rank or their fake-rank settings.
 	 * @return
 	 */
-	public Rank getRank(UUID uuid);
+	public Rank getRank(UUID uuid, boolean useModifiedRank);
 	
 	/**
 	 * Gets the Rank from the player object.
@@ -62,9 +63,10 @@ public interface IRankManager {
 	 * If the BasePlayer is an instance of CachedPlayer it will get the cached rank,
 	 * if it is a DatabasePlayer it will get the database rank, like {@link #getRankDirect(UUID)}
 	 * @param pl the Player.
+	 * @param useModifiedRank specifies whether modifications to the player's rank setting should be included. This includes their nickname-rank or their fake-rank settings.
 	 * @return the Rank from the player.
 	 */
-	public Rank getRank(BasePlayer pl);
+	public Rank getRank(BasePlayer pl, boolean useModifiedRank);
 	
 	/**
 	 * Gets the Rank directly from the database. Not Recommended,
@@ -73,9 +75,10 @@ public interface IRankManager {
 	 * This will return PLAYER Rank if the UUID has never joined.
 	 * 
 	 * @param uuid UUID of the player
+	 * @param useModifiedRank specifies whether modifications to the player's rank setting should be included. This includes their nickname-rank or their fake-rank settings.
 	 * @return the Rank from the database, non-cached.
 	 */
-	public Rank getRankDirect(UUID uuid);
+	public Rank getRankDirect(UUID uuid, boolean useModifiedRank);
 	
 	
 	
