@@ -169,8 +169,7 @@ public class MSG {
 	public static final MSG COMMAND_PING_OTHER = new MSG("command_ping_other");
 	
 	public static final MSG COMMAND_ADMIN_USAGE = new MSG("command_admin_usage");
-	public static final MSG COMMAND_ADMIN_CMDLIST_ALL = new MSG("command_admin_cmdlist_all");
-	public static final MSG COMMAND_ADMIN_CMDLIST_ADMINONLY = new MSG("command_admin_cmdlist_adminonly");
+	public static final MSG COMMAND_ADMIN_CMDLIST = new MSG("command_admin_cmdlist");
 	
 	public static final MSG COMMAND_ADMIN_TESTVOTE_USAGE = new MSG("command_admin_testvote_usage");
 	/** Player **/
