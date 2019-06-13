@@ -8,6 +8,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import lol.kangaroo.common.player.BasePlayer;
+import lol.kangaroo.common.player.PlayerVariable;
+
 public class I18N {
 	
 	private Map<Locale, ResourceBundle> messages = new HashMap<>();
@@ -31,7 +34,7 @@ public class I18N {
 		}
 	}
 	
-	public Locale getLocale(String languageCode) {
+	public static Locale getLocale(String languageCode) {
 		String[] lc = languageCode.split("_");
 		return new Locale(lc[0], lc[1]);
 	}
@@ -45,4 +48,9 @@ public class I18N {
 		return messages.get(language).getString(messageKey);
 	}
 
+	public static Locale getPlayerLocale(BasePlayer bp) {
+		String lc = (String) bp.getVariable(PlayerVariable.LANGUAGE);
+		return getLocale(lc);
+	}
+	
 }

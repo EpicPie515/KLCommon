@@ -174,6 +174,28 @@ public class MSG {
 	public static final MSG COMMAND_ADMIN_TESTVOTE_USAGE = new MSG("command_admin_testvote_usage");
 	/** Player **/
 	public static final MSG COMMAND_ADMIN_TESTVOTE = new MSG("command_admin_testvote");
+
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_USAGE = new MSG("command_admin_playerinfo_usage");
+	/** Player, Rank Title, Last Seen **/
+	public static final MSG COMMAND_ADMIN_PLAYERINFO = new MSG("command_admin_playerinfo");
+	/** Vote Streak, Last Vote, Visibility, Nicknamed, First Join, Level, Experience, Required Experience, Balance, Language **/
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_DATA = new MSG("command_admin_playerinfo_data");
+	/** Status, Reason, Author, Date **/
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_PUNISHED = new MSG("command_admin_playerinfo_punished");
+	/** Duration, Time Remaining **/
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_TEMPPUNISHED = new MSG("command_admin_playerinfo_temppunished");
+
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_VISIBLE = new MSG("command_admin_playerinfo_status_visible");
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_VANISHED = new MSG("command_admin_playerinfo_status_vanished");
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_ONLINE = new MSG("command_admin_playerinfo_status_online");
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_ONLINE_WARNING = new MSG("command_admin_playerinfo_status_online_warning");
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_UNNICKED = new MSG("command_admin_playerinfo_status_unnicked");
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_NICKED = new MSG("command_admin_playerinfo_status_nicked");
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_PERMBANNED = new MSG("command_admin_playerinfo_status_permbanned");
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_TEMPBANNED = new MSG("command_admin_playerinfo_status_tempbanned");
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_BLACKLISTED = new MSG("command_admin_playerinfo_status_blacklisted");
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_PERMMUTED = new MSG("command_admin_playerinfo_status_permmuted");
+	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_TEMPMUTED = new MSG("command_admin_playerinfo_status_tempmuted");
 	
 	
 	
@@ -280,7 +302,7 @@ public class MSG {
 	 * @return the translated string.
 	 */
 	public static String getInternetTranslation(String toTranslate, String targetLanguageCode) {
-		return getInternetTranslation(toTranslate, i18n.getLocale(targetLanguageCode));
+		return getInternetTranslation(toTranslate, I18N.getLocale(targetLanguageCode));
 	}
 	
 	/**
@@ -306,7 +328,7 @@ public class MSG {
 	 * @return Locale of the languageCode
 	 */
 	public static Locale getLocale(String languageCode) {
-		return i18n.getLocale(languageCode);
+		return I18N.getLocale(languageCode);
 	}
 	
 }
