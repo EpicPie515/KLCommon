@@ -69,6 +69,10 @@ public abstract class Punishment {
 		return active;
 	}
 
+	public boolean isPermanent() {
+		return duration == -1;
+	}
+	
 	public void setDuration(long duration) {
 		this.duration = duration;
 	}
