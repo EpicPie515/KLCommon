@@ -38,6 +38,14 @@ public class MSG {
 	/** Site Name, Streak **/
 	public static final MSG VOTE_RECEIVED = new MSG("vote_received");
 	
+	/** Rank Name, Duration */
+	public static final MSG PLAYER_GRANTEDRANK = new MSG("player_grantedrank");
+	/** Rank Name, Reason */
+	public static final MSG PLAYER_REMOVEDRANK = new MSG("player_removedrank");
+	/** Permission Name (Pref. all caps) */
+	public static final MSG PLAYER_GRANTEDPERM = new MSG("player_grantedperm");
+	/** Permission Name (Pref. all caps) */
+	public static final MSG PLAYER_REMOVEDPERM = new MSG("player_removedperm");
 
 	/** Amount, Multiplier Message **/
 	public static final MSG EXP_ADDED = new MSG("exp_added");
@@ -47,21 +55,12 @@ public class MSG {
 	/** Amount, Multiplier Message **/
 	public static final MSG MONEY_ADDED = new MSG("money_added");
 
-	/** Rank Name, Duration */
-	public static final MSG PLAYER_GRANTEDRANK = new MSG("player_grantedrank");
-	/** Rank Name, Reason */
-	public static final MSG PLAYER_REMOVEDRANK = new MSG("player_removedrank");
-	/** Permission Name (Pref. all caps) */
-	public static final MSG PLAYER_GRANTEDPERM = new MSG("player_grantedperm");
-	/** Permission Name (Pref. all caps) */
-	public static final MSG PLAYER_REMOVEDPERM = new MSG("player_removedperm");
-	
-
 	public static final MSG TIMEFORMAT_YEARS = new MSG("timeformat_years");
 	public static final MSG TIMEFORMAT_DAYS = new MSG("timeformat_days");
 	public static final MSG TIMEFORMAT_HOURS = new MSG("timeformat_hours");
 	public static final MSG TIMEFORMAT_MINUTES = new MSG("timeformat_minutes");
 	public static final MSG TIMEFORMAT_PERMANENT = new MSG("timeformat_permanent");
+	public static final MSG TIMEFORMAT_INVALID = new MSG("timeformat_invalid");
 	
 	/** Formatted Time Remeaining */
 	public static final MSG BANNED_TIMEREMAINING = new MSG("banned_timeremaining");
@@ -143,6 +142,9 @@ public class MSG {
 	
 	public static final MSG ADMIN_SILENT = new MSG("admin_silent");
 	public static final MSG ADMIN_OFFLINE = new MSG("admin_offline");
+
+	public static final MSG ADMIN_AUTH_REQUIRED = new MSG("admin_auth_required");
+	public static final MSG ADMIN_AUTH_FAIL = new MSG("admin_auth_fail");
 	
 	public static final MSG COMMAND_BAN_USAGE = new MSG("command_ban_usage");	
 	public static final MSG COMMAND_BAN_ALREADY = new MSG("command_ban_already");
@@ -196,6 +198,17 @@ public class MSG {
 	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_BLACKLISTED = new MSG("command_admin_playerinfo_status_blacklisted");
 	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_PERMMUTED = new MSG("command_admin_playerinfo_status_permmuted");
 	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_TEMPMUTED = new MSG("command_admin_playerinfo_status_tempmuted");
+	
+	public static final MSG COMMAND_ADMIN_GRANT_USAGE = new MSG("command_admin_grant_usage");
+	/** Argument Name **/
+	public static final MSG COMMAND_ADMIN_GRANT_INVALIDARG = new MSG("command_admin_grant_invalidarg");
+	public static final MSG COMMAND_ADMIN_GRANT_RANKORPERMREQ = new MSG("command_admin_grant_rankorpermreq");
+	public static final MSG COMMAND_ADMIN_GRANT_PERMREQVALUE = new MSG("command_admin_grant_permreqvalue");
+	public static final MSG COMMAND_ADMIN_GRANT_TIMEREQ = new MSG("command_admin_grant_timereq");
+	/** Argument Name **/
+	public static final MSG COMMAND_ADMIN_GRANT_DUPLICATEARG = new MSG("command_admin_grant_duplicatearg");
+	/** Player, Rank, Duration **/
+	public static final MSG COMMAND_ADMIN_GRANT_SUCCESS = new MSG("command_admin_grant_success");
 	
 	
 	
