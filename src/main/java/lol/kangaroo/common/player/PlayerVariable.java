@@ -22,11 +22,13 @@ public enum PlayerVariable {
 	FIRSTJOIN(Timestamp.class, "join_data"),
 	LASTQUIT(Timestamp.class, "join_data"),
 	LASTJOIN(Timestamp.class, "join_data"),
-	ADMIN_JOINALERT(Boolean.class),
+	ADMIN_ALERT(Boolean.class),
 	LANGUAGE(String.class, "", "", "valueOf", Object.class),
 	NICKNAME(String.class, "", "", "valueOf", Object.class),
 	VOTE_STREAK(Integer.class),
 	VOTE_LAST(Timestamp.class),
+	RANK_EXPIRETIME(Timestamp.class),
+	RANK_EXPIRETO(Rank.class, "", "", "getByName", String.class),
 	
 	/** Make sure to update defaults in @PlayerManager#createNewPlayer */
 	
