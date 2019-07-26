@@ -2,6 +2,8 @@ package lol.kangaroo.common.permissions;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -48,14 +50,20 @@ public class PermissionManager {
 		return perms.containsKey(perm) && perms.get(perm);
 	}
 	
-	public void setPlayerPermission(BasePlayer p, String perm, boolean value) {
-		db.update("INSERT INTO `player_perms` (`UUID`, `PERM`, `VALUE`) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE `VALUE`=?", p.getUniqueId(), perm, value, value);
+	/**
+	 * Sets the player's permission, overriding rank permissions.
+	 * @param perm The Permission to set to the player.
+	 * @param value The Value of this permission.
+	 * @param expireOn The Expiration of this permission, or 0 for permanent.
+	 */
+	public void setPlayerPermission(BasePlayer p, String perm, boolean value, Timestamp expireOn) {
+		db.update("INSERT INTO `player_perms` (`UUID`, `PERM`, `VALUE`, `EXPIREON`) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE `VALUE`=VALUES(`VALUE`)", p.getUniqueId(), perm, value, expireOn);
 	}
 	
 	public void setPlayerPermissions(BasePlayer p, Map<String, Boolean> perms) {
 		Set<DoubleObject<String, Object[]>> updates = new HashSet<>();
 		for(Entry<String, Boolean> e : perms.entrySet()) {
-			updates.add(new DoubleObject<>("INSERT INTO `player_perms` (`UUID`, `PERM`, `VALUE`) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE `VALUE`=?", new Object[] { p.getUniqueId(), e.getKey(), e.getValue(), e.getValue()}));
+			updates.add(new DoubleObject<>("INSERT INTO `player_perms` (`UUID`, `PERM`, `VALUE`, `EXPIREON`) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE `VALUE`=VALUES(`VALUE`)", new Object[] { p.getUniqueId(), e.getKey(), e.getValue(), new Timestamp(0)}));
 		}
 		db.multiUpdate(updates);
 	}
@@ -119,13 +127,19 @@ public class PermissionManager {
 				e.printStackTrace();
 			}
 		});
+		Set<String> expired = new HashSet<>();
 		queries.put(
-				new DoubleObject<>("SELECT `PERM`, `VALUE` FROM `player_perms` WHERE `UUID`=?",
+				new DoubleObject<>("SELECT `PERM`, `VALUE`, `EXPIREON` FROM `player_perms` WHERE `UUID`=?",
 				new Object[] {bp.getUniqueId()}),
 				rs -> {
 			try {
-				while(rs.next())
-					perms.put(rs.getString(1), rs.getBoolean(2));
+				while(rs.next()) {
+					Timestamp exp = rs.getTimestamp(3);
+					if(exp.getTime() > 0 && exp.toInstant().isBefore(Instant.now())) 
+						expired.add(rs.getString(1));
+					else
+						perms.put(rs.getString(1), rs.getBoolean(2));
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -136,20 +150,42 @@ public class PermissionManager {
 				perms.put(r.getPerm(), true);
 			else perms.put(r.getPerm(), false);
 		db.multiQuery(queries);
+		removePlayerPermissions(bp, expired);
 		return perms;
 	}
 	
 	public Map<String, Boolean> getPlayerPermissions(BasePlayer bp) {
 		Map<String, Boolean> perms = new HashMap<>();
-		db.query("SELECT `PERM`, `VALUE` FROM `player_perms` WHERE `UUID`=?", rs -> {
+		Set<String> expired = new HashSet<>();
+		db.query("SELECT `PERM`, `VALUE`, `EXPIREON` FROM `player_perms` WHERE `UUID`=?", rs -> {
 			try {
-				while(rs.next())
-					perms.put(rs.getString(1), rs.getBoolean(2));
+				while(rs.next()) {
+					Timestamp exp = rs.getTimestamp(3);
+					if(exp.getTime() > 0 && exp.toInstant().isBefore(Instant.now())) 
+						expired.add(rs.getString(1));
+					else
+						perms.put(rs.getString(1), rs.getBoolean(2));
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}, bp.getUniqueId());
+		removePlayerPermissions(bp, expired);
 		return perms;
+	}
+	
+	public Set<String> getExpiredPlayerPermissions(BasePlayer bp) {
+		Set<String> expired = new HashSet<>();
+		db.query("SELECT `PERM` FROM `player_perms` WHERE `UUID`=? AND `EXPIREON` > 0 AND `EXPIREON` < CURRENT_TIMESTAMP()", rs -> {
+			try {
+				while(rs.next()) {
+					expired.add(rs.getString(1));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}, bp.getUniqueId());
+		return expired;
 	}
 	
 	public Map<String, Boolean> getRankSuperperms(Rank rank) {
