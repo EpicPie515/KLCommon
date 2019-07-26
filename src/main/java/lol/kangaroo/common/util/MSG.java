@@ -44,8 +44,10 @@ public class MSG {
 	public static final MSG PLAYER_REMOVEDRANK = new MSG("player_removedrank");
 	/** Permission Name (Pref. all caps) */
 	public static final MSG PLAYER_GRANTEDPERM = new MSG("player_grantedperm");
-	/** Permission Name (Pref. all caps) */
+	/** Permission Name (Pref. all caps), Reason (short) */
 	public static final MSG PLAYER_REMOVEDPERM = new MSG("player_removedperm");
+	
+	public static final MSG PLAYER_REMOVEDEXPIRED = new MSG("player_removedexpired");
 
 	/** Amount, Multiplier Message **/
 	public static final MSG EXP_ADDED = new MSG("exp_added");
