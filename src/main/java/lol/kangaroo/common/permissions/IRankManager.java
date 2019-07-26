@@ -1,5 +1,6 @@
 package lol.kangaroo.common.permissions;
 
+import java.time.Instant;
 import java.util.UUID;
 
 import lol.kangaroo.common.player.BasePlayer;
@@ -47,7 +48,7 @@ public interface IRankManager {
 	/**
 	 * Gets the Rank from the cached player.
 	 * 
-	 * Unlike the other methods, this will always return the <b>cached</b> rank.
+	 * Unlike the other methods, this will always return the <b>cached</b> rank, unless their rank is not in the cache.
 	 * 
 	 * This will return PLAYER Rank if the UUID has never joined.
 	 * 
@@ -79,7 +80,53 @@ public interface IRankManager {
 	 * @return the Rank from the database, non-cached.
 	 */
 	public Rank getRankDirect(UUID uuid, boolean useModifiedRank);
+
+	/**
+	 * Gets the Expiry Timestamp of their Rank.
+	 * 
+	 * Unlike the other methods, this will always return the <b>cached</b> rank expiry, unless their rank expiry is not in the cache.
+	 * 
+	 * This will return <b>null</b> if the rank is permanent.
+	 * 
+	 * @param uuid UUID of the player
+	 * @return the Rank expiry instant for that player, or null if it doesn't expire.
+	 */
+	public Instant getRankExpiry(UUID uuid);
 	
+	/**
+	 * Gets the Expiry Timestamp of their Rank.
+	 * 
+	 * If the BasePlayer is an instance of CachedPlayer it will get the cached rank expiry,
+	 * if it is a DatabasePlayer it will get the database rank expiry, like {@link #getRankDirect(UUID)}
+	 * 
+	 * This will return <b>null</b> if the rank is permanent.
+	 * 
+	 * @param pl the player
+	 * @return the Rank expiry instant for that player, or null if it doesn't expire.
+	 */
+	public Instant getRankExpiry(BasePlayer pl);
 	
+	/**
+	 * Gets the Rank to give this player when their current rank expires.
+	 * 
+	 * This will always return from the cache unless it is not in the cache.
+	 * 
+	 * Defaults to PLAYER, however may be altered for staff or rank upgrades from permanent ranks to monthly subscriptions. (e.g. Hypixel's MVP+ to MVP++)
+	 * @param uuid UUID of the player
+	 * @return the Rank to give to the player when theirs expires.
+	 */
+	public Rank getRankExprireTo(UUID uuid);
+	
+	/**
+	 * Gets the Rank to give this player when their current rank expires.
+	 * 
+	 * This will return either cached or direct, depending on the player implementation.
+	 * 
+	 * Defaults to PLAYER, however may be altered for staff or rank upgrades from permanent ranks to monthly subscriptions. (e.g. Hypixel's MVP+ to MVP++)
+	 * 
+	 * @param pl the player
+	 * @return the Rank to give to the player when theirs expires.
+	 */
+	public Rank getRankExprireTo(BasePlayer pl);
 	
 }
