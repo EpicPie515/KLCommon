@@ -1,5 +1,7 @@
 package lol.kangaroo.common.database;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.SQLException;
 
 import lol.kangaroo.common.util.ObjectMutable;
@@ -61,7 +63,7 @@ public enum Setting {
 	private static DatabaseManager db;
 	
 	public static void init(DatabaseManager dbm) {
-		dbm = db;
+		db = dbm;
 	}
 	
 	public static void setSetting(Setting s, Object value) {
@@ -69,16 +71,23 @@ public enum Setting {
 	}
 	
 	public static Object getSetting(Setting s) {
-		ObjectMutable<Object> o = new ObjectMutable<Object>(null);
+		ObjectMutable<String> o = new ObjectMutable<>(null);
 		db.query("SELECT `VALUE` FROM `settings` WHERE `SETTING`=?", rs -> {
 			try {
 				if(rs.next())
-					o.set(rs.getObject(1));
+					o.set(rs.getString(1));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}, s.getSettingName());
-		return o.get();
+		Object rt = o.get();
+		try {
+			Method valueOf = s.getSettingClass().getMethod(s.getValueOf(), s.getValueOfArg());
+			rt = valueOf.invoke(null, o.get());
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		return rt;
 	}
 	
 }
