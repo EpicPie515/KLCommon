@@ -41,7 +41,9 @@ public class MSG {
 
 	/** Amount, Multiplier Message **/
 	public static final MSG EXP_ADDED = new MSG("exp_added");
-	/** New Level, Level Number, Level Symbol **/
+	/** Level Color, Level Number, Level Name **/
+	public static final MSG EXP_LEVELGAINED = new MSG("exp_levelgained");
+	/** Level Color, New Level, Level Number, Level Symbol **/
 	public static final MSG EXP_LEVELUP = new MSG("exp_levelup");
 	
 	/** Amount, Multiplier Message **/
@@ -61,6 +63,8 @@ public class MSG {
 	public static final MSG TIMEFORMAT_DAYS = new MSG("timeformat_days");
 	public static final MSG TIMEFORMAT_HOURS = new MSG("timeformat_hours");
 	public static final MSG TIMEFORMAT_MINUTES = new MSG("timeformat_minutes");
+	public static final MSG TIMEFORMAT_LESSTHANMIN = new MSG("timeformat_lessthanmin");
+	public static final MSG TIMEFORMAT_PAST = new MSG("timeformat_past");
 	public static final MSG TIMEFORMAT_PERMANENT = new MSG("timeformat_permanent");
 	
 	/** Formatted Time Remeaining */
@@ -187,7 +191,9 @@ public class MSG {
 
 	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_VISIBLE = new MSG("command_admin_playerinfo_status_visible");
 	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_VANISHED = new MSG("command_admin_playerinfo_status_vanished");
+	/** Server Name **/
 	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_ONLINE = new MSG("command_admin_playerinfo_status_online");
+	/** Server Name **/
 	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_ONLINE_WARNING = new MSG("command_admin_playerinfo_status_online_warning");
 	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_UNNICKED = new MSG("command_admin_playerinfo_status_unnicked");
 	public static final MSG COMMAND_ADMIN_PLAYERINFO_STATUS_NICKED = new MSG("command_admin_playerinfo_status_nicked");
