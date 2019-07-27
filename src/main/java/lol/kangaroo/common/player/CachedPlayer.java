@@ -67,6 +67,14 @@ public class CachedPlayer extends BasePlayer {
 		return punishments;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof CachedPlayer))
+			return false;
+		CachedPlayer cp = (CachedPlayer) obj;
+		return uuid == cp.uuid;
+	}
+	
 	
 	
 }
