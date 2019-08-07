@@ -176,7 +176,7 @@ public class PermissionManager {
 	
 	public Set<String> getExpiredPlayerPermissions(BasePlayer bp) {
 		Set<String> expired = new HashSet<>();
-		db.query("SELECT `PERM` FROM `player_perms` WHERE `UUID`=? AND `EXPIREON` > 0 AND `EXPIREON` < CURRENT_TIMESTAMP()", rs -> {
+		db.query("SELECT `PERM` FROM `player_perms` WHERE `UUID`=? AND `EXPIREON` != NULL AND `EXPIREON` > 0 AND `EXPIREON` < CURRENT_TIMESTAMP()", rs -> {
 			try {
 				while(rs.next()) {
 					expired.add(rs.getString(1));
