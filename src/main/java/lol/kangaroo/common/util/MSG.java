@@ -88,6 +88,11 @@ public class MSG {
 	public static final MSG MUTEMESSAGE_TEMPORARY = new MSG("mutemessage_temporary");
 	/** Have Been/Are, Author, Reason, Date, Appeal */
 	public static final MSG MUTEMESSAGE_PERMANENT = new MSG("mutemessage_permanent");
+
+	public static final MSG UNMUTEMESSAGE_EXPIRED = new MSG("unmutemessage_expired");
+	/** Author, Reason **/
+	public static final MSG UNMUTEMESSAGE_MANUAL = new MSG("unmutemessage_manual");
+	
 	
 	public static final MSG APPEAL_URL = new MSG("appeal_url");
 	public static final MSG SUPPORT_EMAIL = new MSG("support_email");
@@ -216,8 +221,16 @@ public class MSG {
 	/** Argument Name **/
 	public static final MSG COMMAND_ADMIN_GRANT_DUPLICATEARG = new MSG("command_admin_grant_duplicatearg");
 	/** Player, Rank, Duration **/
-	public static final MSG COMMAND_ADMIN_GRANT_SUCCESS = new MSG("command_admin_grant_success");
+	public static final MSG COMMAND_ADMIN_GRANT_RANK_SUCCESS = new MSG("command_admin_grant_rank_success");
+	/** Player, Permission, Duration **/
+	public static final MSG COMMAND_ADMIN_GRANT_PERM_SUCCESS = new MSG("command_admin_grant_perm_success");
 	
+	public static final MSG COMMAND_ADMIN_GENAUTH_ALREADY = new MSG("command_admin_genauth_already");
+	/** Secret **/
+	public static final MSG COMMAND_ADMIN_GENAUTH = new MSG("command_admin_genauth");
+	public static final MSG COMMAND_ADMIN_GENAUTH_OTHER_ALREADY = new MSG("command_admin_genauth_other_already");
+	/** Player **/
+	public static final MSG COMMAND_ADMIN_GENAUTH_OTHER = new MSG("command_admin_genauth_other");
 	
 	
 	private String messageKey;
