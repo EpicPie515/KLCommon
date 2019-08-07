@@ -26,7 +26,7 @@ public class DurationFormat {
 			if(hours > 0) ds += hours + " " + MSG.TIMEFORMAT_HOURS.getMessage(lang) + ", ";
 			ds += minutes + " " + MSG.TIMEFORMAT_MINUTES.getMessage(lang);
 		}
-		ds += " " + MSG.TIMEFORMAT_PAST.getMessage(lang);
+		if(past) ds += " " + MSG.TIMEFORMAT_PAST.getMessage(lang);
 		return ds;
 	}
 	
