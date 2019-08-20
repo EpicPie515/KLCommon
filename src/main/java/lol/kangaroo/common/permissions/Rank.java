@@ -4,7 +4,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public enum Rank {
 	
-	PLAYER(10, 1, 99, ChatColor.GRAY, "Player", "Player", "kmc.player", ChatColor.GRAY + "", false),
+	PLAYER(10, 1, 99, ChatColor.GRAY, "Player", "Player", "", ChatColor.GRAY + "", false),
 	OG(14, 2, 95, ChatColor.GRAY, "OG", "OG", "kmc.plus", ChatColor.LIGHT_PURPLE + "%1$s[" + ChatColor.GRAY + "OG" + ChatColor.LIGHT_PURPLE + "%1$s]" + ChatColor.GRAY + " ", true),
 	FAKERANK(12, 2, 14, ChatColor.BLUE, "Admin*", "Admin", "kmc.plus"),
 	PLUS(20, 2, 90, ChatColor.WHITE, "Plus", "Plus", "kmc.plus", ChatColor.WHITE + "[+] ", false),
