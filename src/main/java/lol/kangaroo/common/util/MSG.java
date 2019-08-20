@@ -26,11 +26,13 @@ public class MSG {
 	public static final MSG PREFIX_BROADCAST = new MSG("prefix_broadcast");
 	public static final MSG PREFIX_ERROR = new MSG("prefix_error");
 	public static final MSG PREFIX_PLAYER = new MSG("prefix_player");
+	public static final MSG PREFIX_LOLCHEAT = new MSG("prefix_lolcheat");
 	
 	public static final MSG NO_PERM = new MSG("no_perm");
 	public static final MSG PLAYER_NOTFOUND = new MSG("player_notfound");
 	public static final MSG PLAYER_OFFLINE = new MSG("player_offline");
 	public static final MSG UNKNOWN_COMMAND = new MSG("unknown_command");
+	public static final MSG MUST_BE_PLAYER = new MSG("must_be_player");
 	public static final MSG CONSOLE = new MSG("console");
 	
 	/** Bonus Amount */
@@ -59,6 +61,11 @@ public class MSG {
 	/** Amount, Multiplier Message **/
 	public static final MSG MONEY_ADDED = new MSG("money_added");
 
+	/** (Formatted pref.) Server **/
+	public static final MSG PLAYER_SERVER_CONNECTING = new MSG("player_server_connecting");
+	/** (Formatted pref.) Server **/
+	public static final MSG PLAYER_SERVER_CONNECTED_ALREADY = new MSG("player_server_connected_already");
+	
 	public static final MSG TIMEFORMAT_YEARS = new MSG("timeformat_years");
 	public static final MSG TIMEFORMAT_DAYS = new MSG("timeformat_days");
 	public static final MSG TIMEFORMAT_HOURS = new MSG("timeformat_hours");
@@ -113,6 +120,8 @@ public class MSG {
 	/** Target, Duration, Author, Reason */
 	public static final MSG PUBLIC_TEMPMUTEALERT = new MSG("public_tempmutealert");
 
+	public static final MSG PUBLIC_GAMEBANALERT = new MSG("public_gamebanalert");
+	
 	/** Target, Author */
 	public static final MSG PUBLIC_UNBANALERT = new MSG("public_unbanalert");
 	/** Target, Author */
@@ -180,6 +189,63 @@ public class MSG {
 	public static final MSG COMMAND_PING_SELF = new MSG("command_ping_self");
 	/** Player, Ping **/
 	public static final MSG COMMAND_PING_OTHER = new MSG("command_ping_other");
+
+	/** Command, Target **/
+	public static final MSG COMMAND_LINKS_SENDER = new MSG("command_links_sender");
+
+	/** Sender **/
+	public static final MSG COMMAND_LINKS_ALL_OTHER = new MSG("command_links_all_other");
+	public static final MSG COMMAND_LINKS_ALL_SELF = new MSG("command_links_all_self");
+	public static final MSG COMMAND_LINKS_ALL = new MSG("command_links_all");
+	/** Sender **/
+	public static final MSG COMMAND_LINKS_TS_OTHER = new MSG("command_links_ts_other");
+	public static final MSG COMMAND_LINKS_TS_SELF = new MSG("command_links_ts_self");
+	public static final MSG COMMAND_LINKS_TS = new MSG("command_links_ts");
+	/** Sender **/
+	public static final MSG COMMAND_LINKS_DISCORD_OTHER = new MSG("command_links_discord_other");
+	public static final MSG COMMAND_LINKS_DISCORD_SELF = new MSG("command_links_discord_self");
+	public static final MSG COMMAND_LINKS_DISCORD = new MSG("command_links_discord");
+	/** Sender **/
+	public static final MSG COMMAND_LINKS_WEBSITE_OTHER = new MSG("command_links_website_other");
+	public static final MSG COMMAND_LINKS_WEBSITE_SELF = new MSG("command_links_website_self");
+	public static final MSG COMMAND_LINKS_WEBSITE = new MSG("command_links_website");
+	/** Sender **/
+	public static final MSG COMMAND_LINKS_STORE_OTHER = new MSG("command_links_store_other");
+	public static final MSG COMMAND_LINKS_STORE_SELF = new MSG("command_links_store_self");
+	public static final MSG COMMAND_LINKS_STORE = new MSG("command_links_store");
+	/** Sender **/
+	public static final MSG COMMAND_LINKS_VOTE_OTHER = new MSG("command_links_vote_other");
+	public static final MSG COMMAND_LINKS_VOTE_SELF = new MSG("command_links_vote_self");
+	/** Last Vote, Time Left(Or Blank), Current Streak, Expired(Or Blank) **/
+	public static final MSG COMMAND_LINKS_VOTE = new MSG("command_links_vote");
+	/** 1Unit Time **/
+	public static final MSG COMMAND_LINKS_VOTE_TIMELEFT = new MSG("command_links_vote_timeleft");
+	public static final MSG COMMAND_LINKS_VOTE_EXPIRED = new MSG("command_links_vote_expired");
+	
+	/** Formatted Server Name, Internal Server Name **/
+	public static final MSG COMMAND_SERVER_CURRENT = new MSG("command_server_current");
+	public static final MSG COMMAND_SERVER_UNKNOWN = new MSG("command_server_unknown");
+	
+	// TODO make the player count in pullall exclude the current server
+	public static final MSG COMMAND_PULL_USAGE = new MSG("command_pull_usage");
+	/** Player, Server **/
+	public static final MSG COMMAND_PULL_ALREADYTHERE = new MSG("command_pull_alreadythere");
+	/** Player Count, Server, Command **/
+	public static final MSG COMMAND_PULL_ALL_CONFIRM = new MSG("command_pull_all_confirm");
+	/** Player Count, Server **/
+	public static final MSG COMMAND_PULL_ALL = new MSG("command_pull_all");
+	/** Player, Server **/
+	public static final MSG COMMAND_PULL_PULL = new MSG("command_pull_pull");
+	/** Server, Sender **/
+	public static final MSG COMMAND_PULL_PULLED = new MSG("command_pull_pulled");
+	/** Server **/
+	public static final MSG COMMAND_PULL_PULLED_SILENT = new MSG("command_pull_pulled_silent");
+	
+	public static final MSG COMMAND_GOTO_USAGE = new MSG("command_goto_usage");
+	/** Player **/
+	public static final MSG COMMAND_GOTO_FINDING = new MSG("command_goto_finding");
+	/** Player, Server **/
+	public static final MSG COMMAND_GOTO_FOUND = new MSG("command_goto_found");
 	
 	public static final MSG COMMAND_ADMIN_USAGE = new MSG("command_admin_usage");
 	public static final MSG COMMAND_ADMIN_CMDLIST = new MSG("command_admin_cmdlist");
@@ -224,8 +290,10 @@ public class MSG {
 	public static final MSG COMMAND_ADMIN_GRANT_RANK_SUCCESS = new MSG("command_admin_grant_rank_success");
 	/** Player, Permission, Duration **/
 	public static final MSG COMMAND_ADMIN_GRANT_PERM_SUCCESS = new MSG("command_admin_grant_perm_success");
-	
-	public static final MSG COMMAND_ADMIN_GENAUTH_ALREADY = new MSG("command_admin_genauth_already");
+
+	public static final MSG COMMAND_ADMIN_GENAUTH_USAGE = new MSG("command_admin_genauth_usage");
+	/** Player, Rank **/
+	public static final MSG COMMAND_ADMIN_GENAUTH_NOTSTAFF = new MSG("command_admin_genauth_notstaff");
 	/** Secret **/
 	public static final MSG COMMAND_ADMIN_GENAUTH = new MSG("command_admin_genauth");
 	public static final MSG COMMAND_ADMIN_GENAUTH_OTHER_ALREADY = new MSG("command_admin_genauth_other_already");
@@ -242,11 +310,20 @@ public class MSG {
 	 * Returns the formatted message for the given Locale.
 	 * 
 	 * Formatted with String.format and ChatColor translation.
+	 * if a @MSG object is any of the arguments, it will automatically be localized.
 	 * 
 	 * @param args the arguments to the String.format() call.
 	 * @return A colored, formatted message.
 	 */
 	public String getMessage(String languageCode, Object... args) {
+		if(args.length > 0) {
+			for(int i = 0; i < args.length; i++) {
+				if(args[i] instanceof MSG) {
+					MSG msgArg = (MSG) args[i];
+					args[i] = msgArg.getMessage(languageCode);
+				}
+			}
+		}
 		return String.format(color(i18n.getLocalizedMessage(languageCode, this.messageKey)), args);
 	}
 	
@@ -254,11 +331,20 @@ public class MSG {
 	 * Returns the formatted message for the given Locale.
 	 * 
 	 * Formatted with String.format and ChatColor translation.
+	 * if a @MSG object is any of the arguments, it will automatically be localized.
 	 * 
 	 * @param args the arguments to the String.format() call.
 	 * @return A colored, formatted message.
 	 */
 	public String getMessage(Locale locale, Object... args) {
+		if(args.length > 0) {
+			for(int i = 0; i < args.length; i++) {
+				if(args[i] instanceof MSG) {
+					MSG msgArg = (MSG) args[i];
+					args[i] = msgArg.getMessage(locale);
+				}
+			}
+		}
 		return String.format(color(i18n.getLocalizedMessage(locale, this.messageKey)), args);
 	}
 	
@@ -266,12 +352,22 @@ public class MSG {
 	 * Returns the formatted message for the given Player's Locale.
 	 * 
 	 * Formatted with String.format and ChatColor translation.
+	 * if a @MSG object is any of the arguments, it will automatically be localized.
 	 * 
 	 * @param args the arguments to the String.format() call.
 	 * @return A colored, formatted message.
 	 */
 	public String getMessage(BasePlayer p, Object... args) {
-		return String.format(color(i18n.getLocalizedMessage((String) p.getVariable(PlayerVariable.LANGUAGE), this.messageKey)), args);
+		String languageCode = (String) p.getVariable(PlayerVariable.LANGUAGE);
+		if(args.length > 0) {
+			for(int i = 0; i < args.length; i++) {
+				if(args[i] instanceof MSG) {
+					MSG msgArg = (MSG) args[i];
+					args[i] = msgArg.getMessage(languageCode);
+				}
+			}
+		}
+		return String.format(color(i18n.getLocalizedMessage(languageCode, this.messageKey)), args);
 	}
 	
 	/**
