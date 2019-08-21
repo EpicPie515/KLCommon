@@ -247,6 +247,11 @@ public class MSG {
 	/** Player, Server **/
 	public static final MSG COMMAND_GOTO_FOUND = new MSG("command_goto_found");
 	
+	/** Attempted Hub, Current Hub **/
+	public static final MSG COMMAND_HUB_UNAVAILABLE_STAYING = new MSG("command_hub_unavailable_staying");
+	/** Attempted Hub, New Hub **/
+	public static final MSG COMMAND_HUB_UNAVAILABLE_CONNECTING = new MSG("command_hub_unavailable_connecting");
+	
 	public static final MSG COMMAND_ADMIN_USAGE = new MSG("command_admin_usage");
 	public static final MSG COMMAND_ADMIN_CMDLIST = new MSG("command_admin_cmdlist");
 	
