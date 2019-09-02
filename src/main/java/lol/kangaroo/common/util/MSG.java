@@ -66,6 +66,7 @@ public class MSG {
 	/** (Formatted pref.) Server **/
 	public static final MSG PLAYER_SERVER_CONNECTED_ALREADY = new MSG("player_server_connected_already");
 	
+	
 	public static final MSG TIMEFORMAT_YEARS = new MSG("timeformat_years");
 	public static final MSG TIMEFORMAT_DAYS = new MSG("timeformat_days");
 	public static final MSG TIMEFORMAT_HOURS = new MSG("timeformat_hours");
