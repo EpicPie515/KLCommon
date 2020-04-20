@@ -5,12 +5,12 @@ import java.util.Map;
 
 public class PlayerUpdateCache {
 	
-	private IPlayerVariableManager pvm;
+	private PlayerVariableManager pvm;
 	
 	private CachedPlayer cp;
 	private Map<PlayerVariable, Object> updateVariables = new HashMap<>();
 	
-	PlayerUpdateCache(CachedPlayer cp, IPlayerVariableManager pvm) {
+	PlayerUpdateCache(CachedPlayer cp, PlayerVariableManager pvm) {
 		this.cp = cp;
 		this.pvm = pvm;
 	}

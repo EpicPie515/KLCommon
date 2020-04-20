@@ -28,8 +28,17 @@ public class MSG {
 	public static final MSG PREFIX_PLAYER = new MSG("prefix_player");
 	public static final MSG PREFIX_LOLCHEAT = new MSG("prefix_lolcheat");
 	
+	/** Level, Name, Message */
+	public static final MSG CHAT_FORMAT = new MSG("chat_format");
+
+	/** Name */
+	public static final MSG PLAYER_JOINMESSAGE = new MSG("player_joinmessage");
+	/** Name */
+	public static final MSG PLAYER_LEAVEMESSAGE = new MSG("player_leavemessage");
+	
 	public static final MSG NO_PERM = new MSG("no_perm");
 	public static final MSG PLAYER_NOTFOUND = new MSG("player_notfound");
+	public static final MSG PLAYER_NOTSELF = new MSG("player_notself");
 	public static final MSG PLAYER_OFFLINE = new MSG("player_offline");
 	public static final MSG UNKNOWN_COMMAND = new MSG("unknown_command");
 	public static final MSG MUST_BE_PLAYER = new MSG("must_be_player");
@@ -114,8 +123,14 @@ public class MSG {
 	public static final MSG PUBLIC_BANALERT = new MSG("public_banalert");
 	/** Target, Duration, Author, Reason */
 	public static final MSG PUBLIC_TEMPBANALERT = new MSG("public_tempbanalert");
-	/** Line, Target, Author, Reason, Line */
+	/** Target, Author */
+	public static final MSG PUBLIC_NRBANALERT = new MSG("public_nrbanalert");
+	/** Target, Duration, Author */
+	public static final MSG PUBLIC_NRTEMPBANALERT = new MSG("public_nrtempbanalert");
+	/** Target, Author, Reason, Line */
 	public static final MSG PUBLIC_BLACKLISTALERT = new MSG("public_blacklistalert");
+	/** Target, Reason, Line */
+	public static final MSG PUBLIC_ABLACKLISTALERT = new MSG("public_ablacklistalert");
 	/** Target, Author, Reason */
 	public static final MSG PUBLIC_MUTEALERT = new MSG("public_mutealert");
 	/** Target, Duration, Author, Reason */
@@ -138,13 +153,19 @@ public class MSG {
 	public static final MSG ADMIN_CONLOSTALERT = new MSG("admin_conlostalert");
 	/** New Name, Old Name */
 	public static final MSG ADMIN_NAMECHANGEALERT = new MSG("admin_namechangealert");
+	public static final MSG ADMIN_ALERTSON = new MSG("admin_alertson");
+	public static final MSG ADMIN_ALERTSOFF = new MSG("admin_alertsoff");
+	/** Target **/
+	public static final MSG ADMIN_ALERTSON_OTHER = new MSG("admin_alertson_other");
+	/** Target **/
+	public static final MSG ADMIN_ALERTSOFF_OTHER = new MSG("admin_alertsoff_other");
 	/** Server, Target, Author, Reason, Silent */
 	public static final MSG ADMIN_KICKALERT = new MSG("admin_kickalert");
 	/** Server, Target, Duration, Author, Reason, Silent */
 	public static final MSG ADMIN_TEMPBANALERT = new MSG("admin_tempbanalert");
 	/** Server, Target, Author, Reason, Silent */
 	public static final MSG ADMIN_BANALERT = new MSG("admin_banalert");
-	/** Target, Author, Reason, Silent */
+	/** Target, Author, Silent */
 	public static final MSG ADMIN_BLACKLISTALERT = new MSG("admin_blacklistalert");
 	/** Server, Target, Duration, Author, Reason, Silent */
 	public static final MSG ADMIN_TEMPMUTEALERT = new MSG("admin_tempmutealert");
@@ -164,6 +185,8 @@ public class MSG {
 	public static final MSG ADMIN_SILENT = new MSG("admin_silent");
 	public static final MSG ADMIN_OFFLINE = new MSG("admin_offline");
 
+	public static final MSG ADMIN_NOREASON = new MSG("admin_noreason");
+	
 	public static final MSG ADMIN_AUTH_REQUIRED = new MSG("admin_auth_required");
 	public static final MSG ADMIN_AUTH_FAIL = new MSG("admin_auth_fail");
 	
@@ -175,6 +198,7 @@ public class MSG {
 	
 	public static final MSG COMMAND_BLACKLIST_USAGE = new MSG("command_blacklist_usage");	
 	public static final MSG COMMAND_BLACKLIST_ALREADY = new MSG("command_blacklist_already");
+	public static final MSG COMMAND_BLACKLIST_NOREASON = new MSG("command_blacklist_noreason");
 	
 	public static final MSG COMMAND_UNBAN_USAGE = new MSG("command_unban_usage");	
 	public static final MSG COMMAND_UNBAN_ALREADY = new MSG("command_unban_already");
@@ -305,6 +329,30 @@ public class MSG {
 	public static final MSG COMMAND_ADMIN_GENAUTH_OTHER_ALREADY = new MSG("command_admin_genauth_other_already");
 	/** Player **/
 	public static final MSG COMMAND_ADMIN_GENAUTH_OTHER = new MSG("command_admin_genauth_other");
+	
+
+	public static final MSG COMMAND_CHAT_USAGE = new MSG("command_chat_usage");
+	/** Status **/
+	public static final MSG COMMAND_CHAT_STATUS = new MSG("command_chat_status");
+	public static final MSG COMMAND_CHAT_STATUS_DISABLED = new MSG("command_chat_status_disabled");
+	public static final MSG COMMAND_CHAT_STATUS_UNRESTRICTED = new MSG("command_chat_status_unrestricted");
+	/** Delay **/
+	public static final MSG COMMAND_CHAT_STATUS_SLOWED = new MSG("command_chat_status_slowed");
+
+	public static final MSG COMMAND_CHAT_CLEAR = new MSG("command_chat_clear");
+	/** Target **/
+	public static final MSG COMMAND_CHAT_CLEAR_OTHER = new MSG("command_chat_clear_other");
+	/** Player, Server **/
+	public static final MSG ADMIN_CHAT_CLEAR = new MSG("admin_chat_clear");
+
+	public static final MSG COMMAND_GAMEMODE_USAGE = new MSG("command_gamemode_usage");
+	/** Mode **/
+	public static final MSG COMMAND_GAMEMODE_SWITCH = new MSG("command_gamemode_switch");
+	/** Player, Mode, Silent **/
+	public static final MSG COMMAND_GAMEMODE_SWITCH_OTHER = new MSG("command_gamemode_switch_other");
+	public static final MSG COMMAND_GAMEMODE_SURVIVAL = new MSG("command_gamemode_survival");
+	public static final MSG COMMAND_GAMEMODE_ADVENTURE = new MSG("command_gamemode_adventure");
+	public static final MSG COMMAND_GAMEMODE_CREATIVE = new MSG("command_gamemode_creative");
 	
 	
 	private String messageKey;

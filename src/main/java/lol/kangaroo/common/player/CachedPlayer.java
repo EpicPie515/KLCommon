@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import lol.kangaroo.common.player.punish.IPunishManager;
+import lol.kangaroo.common.player.punish.PunishManager;
 import lol.kangaroo.common.player.punish.Punishment;
 
 public class CachedPlayer extends BasePlayer {
@@ -16,7 +16,7 @@ public class CachedPlayer extends BasePlayer {
 	private Set<Punishment> punishments = new HashSet<>();
 	private Set<Punishment> activePunishments = new HashSet<>();
 	
-	public CachedPlayer(UUID uuid, Map<PlayerVariable, Object> variables, Set<Punishment> punishments, Set<Punishment> activePunishments, IPlayerVariableManager pvm, IPunishManager pm) {
+	public CachedPlayer(UUID uuid, Map<PlayerVariable, Object> variables, Set<Punishment> punishments, Set<Punishment> activePunishments, PlayerVariableManager pvm, PunishManager pm) {
 		super(uuid, pvm, pm);
 		this.variables.putAll(variables);
 		this.punishments.addAll(punishments);

@@ -8,33 +8,35 @@ import lol.kangaroo.common.util.ObjectMutable;
 
 public enum Setting {
 
-	XPMULTIPLIER(Float.class, "xpmultiplier"),
-	COINMULTIPLIER(Float.class, "coinmultiplier"),
-	XPMREASON(String.class, "xpm_reason", "valueOf", Object.class),
-	COINMREASON(String.class, "coinm_reason", "valueOf", Object.class),
-	NEWSMESSAGE(String.class, "news", "valueOf", Object.class),
-	MOTDTOP(String.class, "motd_top", "valueOf", Object.class),
-	MOTDBOTTOM(String.class, "motd_bottom", "valueOf", Object.class),
+	XPMULTIPLIER(Float.class, "xpmultiplier", 1f),
+	COINMULTIPLIER(Float.class, "coinmultiplier", 1f),
+	XPMREASON(String.class, "xpm_reason", "", "valueOf", Object.class),
+	COINMREASON(String.class, "coinm_reason", "", "valueOf", Object.class),
+	NEWSMESSAGE(String.class, "news", "", "valueOf", Object.class),
+	MOTDTOP(String.class, "motd_top", "", "valueOf", Object.class),
+	MOTDBOTTOM(String.class, "motd_bottom", "", "valueOf", Object.class),
 	
 	;
 	
 	private Class<?> clazz;
 	private String settingName;
+	private Object defValue;
 	private String valueOf;
 	private Class<?> valueOfArg;
 	private String toString;
 	
-	Setting(Class<?> clazz, String settingName) {
-		this(clazz, settingName, "valueOf", String.class);
+	Setting(Class<?> clazz, String settingName, Object defValue) {
+		this(clazz, settingName, defValue, "valueOf", String.class);
 	}
 	
-	Setting(Class<?> clazz, String settingName, String valueOf, Class<?> valueOfArg) {
-		this(clazz, settingName, valueOf, valueOfArg, "toString");
+	Setting(Class<?> clazz, String settingName, Object defValue, String valueOf, Class<?> valueOfArg) {
+		this(clazz, settingName, defValue, valueOf, valueOfArg, "toString");
 	}
 	
-	Setting(Class<?> clazz, String settingName, String valueOf, Class<?> valueOfArg, String toString) {
+	Setting(Class<?> clazz, String settingName, Object defValue, String valueOf, Class<?> valueOfArg, String toString) {
 		this.clazz = clazz;
 		this.settingName = settingName;
+		this.defValue = defValue;
 		this.valueOf = valueOf;
 		this.valueOfArg = valueOfArg;
 		this.toString = toString;
@@ -59,6 +61,10 @@ public enum Setting {
 	public String getToString() {
 		return toString;
 	}
+	
+	public Object getDefaultValue() {
+		return defValue;
+	}
 
 	private static DatabaseManager db;
 	
@@ -81,6 +87,9 @@ public enum Setting {
 			}
 		}, s.getSettingName());
 		Object rt = o.get();
+		if(rt == null) {
+			return s.getDefaultValue();
+		}
 		try {
 			Method valueOf = s.getSettingClass().getMethod(s.getValueOf(), s.getValueOfArg());
 			rt = valueOf.invoke(null, o.get());

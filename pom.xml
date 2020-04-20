@@ -1,9 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>lol.kangaroo</groupId>
+	
+	<parent>
+        <groupId>lol.kangaroo</groupId>
+	  	<artifactId>KangarooLOL</artifactId>
+		<version>${revision}</version>
+    </parent>
+	
 	<artifactId>KLCommon</artifactId>
-	<version>0.0.1</version>
 	<name>KLCommon</name>
+	
+	
+	<scm>
+        <connection>scm:svn:http://127.0.0.1/dummy</connection>
+        <developerConnection>scm:svn:https://127.0.0.1/dummy</developerConnection>
+        <tag>HEAD</tag>
+        <url>http://127.0.0.1/dummy</url>
+    </scm>
 	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -36,12 +49,6 @@
 	</repositories>
 
 	<dependencies>
-		<!-- MySQL Connector -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>6.0.6</version>
-		</dependency>
 		<!-- BungeeCord API -->
 		<dependency>
 			<groupId>net.md-5</groupId>
@@ -49,18 +56,26 @@
 			<version>1.7-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- TaskChain -->
+		<!-- OTP Library  -->
 		<dependency>
-			<groupId>co.aikar</groupId>
-			<artifactId>taskchain-bukkit</artifactId>
-			<version>3.6.0</version>
+			<groupId>com.j256.two-factor-auth</groupId>
+			<artifactId>two-factor-auth</artifactId>
+			<version>1.0</version>
+            <scope>compile</scope>
 		</dependency>
-		<!-- SuperVanish -->
+		<!-- HikariCP  -->
 		<dependency>
-			<groupId>de.myzelyam</groupId>
-			<artifactId>SuperVanish</artifactId>
-			<version>6.1.0</version>
-			<scope>provided</scope>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>3.4.2</version>
+            <scope>compile</scope>
+		</dependency>
+		<!-- SLF4J  -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.6.4</version>
+            <scope>compile</scope>
 		</dependency>
 	</dependencies>
   

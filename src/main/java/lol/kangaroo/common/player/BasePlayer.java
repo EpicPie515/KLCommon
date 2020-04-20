@@ -3,16 +3,16 @@ package lol.kangaroo.common.player;
 import java.util.Set;
 import java.util.UUID;
 
-import lol.kangaroo.common.player.punish.IPunishManager;
+import lol.kangaroo.common.player.punish.PunishManager;
 import lol.kangaroo.common.player.punish.Punishment;
 
 public abstract class BasePlayer {
 	
 	protected UUID uuid;
-	protected IPlayerVariableManager pvm;
-	protected IPunishManager pm;
+	protected PlayerVariableManager pvm;
+	protected PunishManager pm;
 	
-	protected BasePlayer(UUID uuid, IPlayerVariableManager pvm, IPunishManager pm) {
+	protected BasePlayer(UUID uuid, PlayerVariableManager pvm, PunishManager pm) {
 		this.uuid = uuid;
 		this.pvm = pvm;
 		this.pm = pm;

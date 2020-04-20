@@ -1,7 +1,6 @@
 package lol.kangaroo.common.database;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,21 +14,11 @@ import lol.kangaroo.common.util.DoubleObject;
 
 public class DatabaseManager {
 	
-	private String user, pass, db, host;
-	private int port;
+	private final ConnectionPoolManager pool;
 	
 	public DatabaseManager(String user, String pass, String db, String host, int port) {
-		this.user = user;
-		this.pass = pass;
-		this.db = db;
-		this.port = port;
-		this.host = host;
 		
-		try {
-            Class.forName("com.mysql.jdbc.Driver").getConstructor().newInstance();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+		pool = new ConnectionPoolManager(host, Integer.toString(port), db, user, pass, 4, 12, 5000);
 		
 	}
 	
@@ -50,6 +39,31 @@ public class DatabaseManager {
 		} finally {
 			close(c);
 		}
+	}
+	
+	public int updateWithId(String query, Object... o) {
+		Connection c = connect();
+		int id = 0;
+		try {
+			PreparedStatement ps = c.prepareStatement(query);
+			for(int i = 0; i < o.length; i++) {
+				if(o[i] instanceof UUID)
+					ps.setObject(i+1, o[i].toString());
+				else
+					ps.setObject(i+1, o[i]);
+			}
+			ps.executeUpdate();
+			ps.close();
+			PreparedStatement lid = c.prepareStatement("SELECT LAST_INSERT_ID();");
+			ResultSet rs = lid.executeQuery();
+			if(rs.next())
+				id = rs.getInt(1);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(c);
+		}
+		return id;
 	}
 	
 	public void query(String query, Consumer<ResultSet> func, Object... o) {
@@ -120,18 +134,15 @@ public class DatabaseManager {
 	
 	private Connection connect() {
 		try {
-			return DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/"+db+"?user="+user+"&password="+pass+"&zeroDateTimeBehavior=convertToNull&useSSL=false");
+			return pool.getConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
 		}
+		return null;
 	}
 	
 	private void close(Connection c) {
-		try {
-			c.close();
-			c = null;
-		} catch (Exception e) {}
+		pool.close(c);
 	}
 	
 }

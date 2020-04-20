@@ -27,8 +27,6 @@ public enum PlayerVariable {
 	NICKNAME(String.class, "", "", "valueOf", Object.class),
 	VOTE_STREAK(Integer.class),
 	VOTE_LAST(Timestamp.class),
-	RANK_EXPIRETIME(Timestamp.class),
-	RANK_EXPIRETO(Rank.class, "", "", "getByName", String.class),
 	
 	/** Make sure to update defaults in @PlayerManager#createNewPlayer */
 	

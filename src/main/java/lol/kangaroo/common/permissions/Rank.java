@@ -1,12 +1,14 @@
 package lol.kangaroo.common.permissions;
 
+import java.util.Comparator;
+
 import net.md_5.bungee.api.ChatColor;
 
-public enum Rank {
+public enum Rank implements IGrantable {
 	
 	PLAYER(10, 1, 99, ChatColor.GRAY, "Player", "Player", "", ChatColor.GRAY + "", false),
-	OG(14, 2, 95, ChatColor.GRAY, "OG", "OG", "kmc.plus", ChatColor.LIGHT_PURPLE + "%1$s[" + ChatColor.GRAY + "OG" + ChatColor.LIGHT_PURPLE + "%1$s]" + ChatColor.GRAY + " ", true),
 	FAKERANK(12, 2, 14, ChatColor.BLUE, "Admin*", "Admin", "kmc.plus"),
+	OG(14, 2, 95, ChatColor.GRAY, "OG", "OG", "kmc.plus", ChatColor.LIGHT_PURPLE + "%1$s[" + ChatColor.GRAY + "OG" + ChatColor.LIGHT_PURPLE + "%1$s]" + ChatColor.GRAY + " ", true),
 	PLUS(20, 2, 90, ChatColor.WHITE, "Plus", "Plus", "kmc.plus", ChatColor.WHITE + "[+] ", false),
 	PREMIUM(40, 4, 80, ChatColor.GOLD, "Premium", "kmc.premium"),
 	YT(44, 4, 75, ChatColor.RED, "YT", "kmc.yt"),
@@ -22,7 +24,7 @@ public enum Rank {
 	SRMOD(100, 10, 20, ChatColor.GREEN, "Senior Moderator", "SrMod", "kmc.srmod"),
 	ADMIN_DEV(120, 11, 10, ChatColor.DARK_PURPLE, "Administrator / Developer", "Admin", "kmc.admin"),
 	ADMIN_CR(130, 11, 5, ChatColor.DARK_PURPLE, "Administrator / Community Relations", "Admin", "kmc.admin"),
-	ADMIN_SRDEV(120, 12, 10, ChatColor.DARK_PURPLE, "Administrator / Senior Developer", "Admin", "kmc.admin"),
+	ADMIN_SRDEV(135, 12, 10, ChatColor.DARK_PURPLE, "Administrator / Senior Developer", "Admin", "kmc.admin"),
 	OWNER(140, 13, 1, ChatColor.DARK_PURPLE, "Administrator / Owner", "Owner", "kmc.owner");
 	
 	private int id;
@@ -109,6 +111,14 @@ public enum Rank {
 	}
 
 	/**
+	 * @return the name of the rank.
+	 */
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	/**
 	 * @return the shortened name, used for prefixes or references to the general rank title, less specific.
 	 */
 	public String getShortName() {
@@ -149,6 +159,12 @@ public enum Rank {
 		return null;
 	}
 	
+	public static final RankComparator comparator = new RankComparator();
+	
+	public static int compare(Rank o1, Rank o2) {
+		return comparator.compare(o1, o2);
+	}
+	
 	/**
 	 * Finds a rank with that name string, enum name, prefix, or id
 	 * Multiple ranks with same prefix or shortName exist, so using those is not recommended.
@@ -159,6 +175,15 @@ public enum Rank {
 		for(Rank r : values())
 			if(r.name().equalsIgnoreCase(name) || r.getName().equalsIgnoreCase(name) || r.getShortName().equalsIgnoreCase(name) || name.equals(r.getId() + "") || ChatColor.stripColor(r.getRawPrefix()).equalsIgnoreCase(ChatColor.stripColor(name))) return r;
 		return null;
+	}
+	
+	public static class RankComparator implements Comparator<Rank> {
+
+		@Override
+		public int compare(Rank o1, Rank o2) {
+			return o1.getId() - o2.getId();
+		}
+		
 	}
 	
 }
